@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Organize">
+
+    <Space
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="90"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="20"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/req"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="30" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <Spinner
+                android:id="@+id/ob"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="30" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="5" />
+
+            <ToggleButton
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:onClick="ud"
+                android:textOff="up"
+                android:textOn="down" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="5" />
+
+        <ListView
+            android:id="@+id/flist"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="60">
+
+        </ListView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="5" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="10"
+            android:text="sort:"
+            android:onClick="sort"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="5" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
+</LinearLayout>

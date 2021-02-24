@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Filling_Grades">
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="5" />
+
+        <Spinner
+            android:id="@+id/ident"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="15" />
+
+        <EditText
+            android:id="@+id/sub"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="15"
+            android:ems="10"
+            android:hint="Subject"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="15"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+
+            <EditText
+                android:id="@+id/m"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="45"
+                android:ems="10"
+                android:hint="grade"
+                android:inputType="numberDecimal" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+
+            <Spinner
+                android:id="@+id/quarter"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="45" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="60" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:text="submit"
+                android:onClick="submitg"/>
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="40" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout>

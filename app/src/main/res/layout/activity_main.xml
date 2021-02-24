@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+    <Space
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
+
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="90"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="2" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="6"
+            android:ems="10"
+            android:hint="Student's name and first letter of last name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/phoneP"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="6"
+            android:ems="10"
+            android:hint="student's phone number"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/add"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="6"
+            android:ems="10"
+            android:hint="enter student's address"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/phoneH"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="6"
+            android:ems="10"
+            android:hint="enter student's phone at home"
+            android:inputType="phone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nameM"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:ems="10"
+                android:hint="mother's name"
+                android:inputType="textPersonName" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+
+            <EditText
+                android:id="@+id/phoneM"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:ems="10"
+                android:hint="enter mother's phone"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nameF"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:ems="10"
+                android:hint="father's name"
+                android:inputType="textPersonName" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+
+            <EditText
+                android:id="@+id/phoneF"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:ems="10"
+                android:hint="enter father's phone"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="8"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="60" />
+
+            <Button
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:onClick="submit"
+                android:text="submit" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="44" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
+
+</LinearLayout>

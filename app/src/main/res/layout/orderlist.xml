@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/oneSinfo"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="50"
+            android:text="TextView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="50"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="60" />
+
+            <Button
+                android:id="@+id/del"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:text="delete" />
+
+            <Space
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
