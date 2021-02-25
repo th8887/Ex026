@@ -24,11 +24,36 @@ import static com.example.ex026.Students.PHONEM;
 import static com.example.ex026.Students.PHONES;
 import static com.example.ex026.Students.TABLE_STUDENTS;
 
+/**
+ *  The HelperDB.
+ *  @author Tahel Hazan <th8887@bs.amalnet.k12.il>
+ *  @version 1.1.6
+ *  @since 11.12.2020
+ *  HelperDB for tables.
+ *
+ */
 public class HelperDB extends SQLiteOpenHelper {
+    /**
+     * The constant DATABASE_NAME.
+     */
     public static final String DATABASE_NAME="dbstudent.db";
+    /**
+     * The constant DATABASE_VERSION.
+     */
     public static final int DATABASE_VERSION=1;
-    String strCreate,strDelete;
+    /**
+     * The Str create.
+     */
+    String strCreate, /**
+     * The Str delete.
+     */
+    strDelete;
 
+    /**
+     * Instantiates a new Helper db.
+     *
+     * @param context the context
+     */
     public HelperDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

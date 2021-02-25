@@ -20,44 +20,56 @@ import java.util.ArrayList;
 
 import static com.example.ex026.Grades.TABLE_GRADES;
 import static com.example.ex026.Students.TABLE_STUDENTS;
+
 /**
+ * The type Organize.
+ *
  * @author Tahel Hazan <th8887@bs.amalnet.k12.il>
  * @version 1.1.6
- * @since 11.12.2020
- * This activity organizes information according to user's request.
+ * @since 11.12.2020  This activity organizes information according to user's request.
  */
 public class Organize extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     SQLiteDatabase db;
     HelperDB hlp;
     /**
-     * @param crsr2- for the function getnames
+     * @param crsr2 - for the function getnames
      */
-    Cursor crsr,crsr2;
+    Cursor crsr, crsr2;
+    /**
+     * The Flist- the final list of information he user will see.
+     */
     ListView flist;
     ContentValues cv= new ContentValues();
+    /**
+     * The Request- ways the user can sort the information.
+     * Plus an option to organize information up/down.
+     */
     String[] request={"select sort way","all subjects, specific student","specific subject, all students."};
     /**
-     * @param req- request.
-     * @param ob- order by request.
+     * The Req.
+     *
+     * @param req - request.
+     * @param ob - order by request.
      */
-    Spinner req,ob;
+    Spinner req, ob;
     /**
-     * @param obl- order by list.
-     * shows the list of information according to the req Spinner.
-     * @param fl- final list for the ListView.
+     * @param obl - order by list. shows the list of information according to the req Spinner.
+     * @param fl - final list for the ListView.
      */
-    ArrayList<String> ln= new ArrayList<String>();
     ArrayList<String> obl= new ArrayList<String>();
+    /**
+     * The Fl- final list.
+     */
     ArrayList<String> fl= new ArrayList<String>();
     /**
-     * @param op- refers to position in ob Spinner.
-     * @param count- counts the amount of times the user presses the ToggleButton.
-     *             0- down.
-     *             1- up.
+     * @param op - refers to position in ob Spinner.
+     * @param count - counts the amount of times the user presses the ToggleButton.
+     * 0- down.
+     * 1- up.
      */
-    int op,count;
+    int op, count;
     /**
-     * @param s- for the chosen subject in ob Spinner.
+     * @param s - for the chosen subject in ob Spinner.
      */
     String s;
 
@@ -92,7 +104,7 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
                 if (pos == 1) {
                     obl.clear();
                     obl.add("Names");
-                    listByN(obl);
+                    listByN();
                     ArrayAdapter<String> nadp = new ArrayAdapter<String>(this,
                             R.layout.support_simple_spinner_dropdown_item, obl);
                     ob.setAdapter(nadp);
@@ -127,7 +139,7 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
      * ListNames.
      * This function reads only the column names from a table and puts them in a list.
      */
-    public void listByN(ArrayList obl){
+    public void listByN(){
         db=hlp.getReadableDatabase();
         String[] columns = {Students.NAME};
         String selection = Students.ACTIVE+"=?";
@@ -147,7 +159,13 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
         crsr.close();
         db.close();
     }
-     public void listBySub(){
+
+    /**
+     * List by sub.
+     *
+     * Takes the names from STUDENTS table and puts it in a list.
+     */
+    public void listBySub(){
         db= hlp.getReadableDatabase();
         String [] columns= {Grades.SUBJECT};
         String selection= Grades.ACTIVE+"=?";
@@ -169,6 +187,12 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
          db.close();
      }
 
+    /**
+     * Ud.
+     *
+     * @param view the view
+     * to see in the ToggleButton in on or off.
+     */
     public void ud(View view) {
         if (count==1)
             count=0;
@@ -178,10 +202,9 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * Sort.
-     * @param view
      *
-     * This function sends the final list to the ListView according to sorting
-     * type(was chosen in req Spinner).
+     * @param view This function sends the final list to the ListView according to sorting
+     *            type(was chosen in req Spinner).
      */
     public void sort(View view) {
         fl.clear();
@@ -222,7 +245,6 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
             flist.setAdapter(fladp);
         }
         else {
-            listByN(ln);
             db=hlp.getReadableDatabase();
             String[] columns = {Grades.MARK,Grades.ID,Grades.QUARTER, Grades.SUBJECT};
             String selection = Grades.ACTIVE+"=?";
@@ -263,8 +285,11 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * getname.
-     *
+     * <p>
      * This function searches names is STUDENT chart and adds them to the correct grades.
+     *
+     * @param i the
+     * @return the string
      */
     public String getname(int i){
         db=hlp.getWritableDatabase();
@@ -287,8 +312,7 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * Fin.
      *
-     * @param item
-     * Moves the user to Main Activity(filling personal information) activity.
+     * @param item Moves the user to Main Activity(filling personal information) activity.
      */
     public void fin(MenuItem item) {
         Intent c= new Intent(this,MainActivity.class);
@@ -298,32 +322,27 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * Fing.
      *
-     * @param item
-     *
-     * Moves user to filling grades activity.
+     * @param item Moves user to filling grades activity.
      */
     public void fing(MenuItem item) {
         Intent c= new Intent(this,Filling_Grades.class);
         startActivity(c);
     }
+
     /**
      * Pn.
      *
-     * @param item
-     *
-     * The item Sends a Toast to let the user know he is in the current page
-     * he chose from the OptionMenu.
+     * @param item The item Sends a Toast to let the user know he is in the current page he chose from the OptionMenu.
      */
     public void org(MenuItem item) {
         Toast.makeText(this, "You are already here :)", Toast.LENGTH_SHORT).show();
 
     }
+
     /**
      * Qg.
      *
-     * @param item
-     *
-     * Moves user to Grades_info activity.
+     * @param item Moves user to Grades_info activity.
      */
     public void sad(MenuItem item) {
         Intent c= new Intent(this,ShowAndDelete.class);
@@ -333,9 +352,7 @@ public class Organize extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * Cred.
      *
-     * @param item
-     *
-     * Moves the user the Credits activity.
+     * @param item Moves the user the Credits activity.
      */
     public void cred(MenuItem item) {
         Intent c= new Intent(this,Credits.class);

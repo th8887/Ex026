@@ -22,11 +22,13 @@ import java.util.ArrayList;
 
 import static com.example.ex026.Grades.TABLE_GRADES;
 import static com.example.ex026.Students.TABLE_STUDENTS;
+
 /**
+ * The type Show and delete.
+ *
  * @author Tahel Hazan <th8887@bs.amalnet.k12.il>
  * @version 1.1.6
- * @since 11.12.2020
- * This activity shows the information from the charts with an option to delete students.
+ * @since 11.12.2020  This activity shows the information from the charts with an option to delete students.
  */
 public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     SQLiteDatabase db;
@@ -38,20 +40,22 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
      */
     ListView s;
     /**
-     * @param n- shows names.
+     * @param n - shows names.
      */
     Spinner n;
+    /**
+     * The Na- has the list of names for the Spinner..
+     */
     ArrayList<String> na= new ArrayList<String>();
     /**
      * single collects information from one row in the chart.
      */
     String [] single= new String[7];
     /**
-     * @param- adp- for names
-     * @param- adps- for other information from the name.
-     * @param- adpg- for student's grades.
+     * @param- adp - for names
+     * @param- adps - for other information from the name.
      */
-    ArrayAdapter adp,adps;
+    ArrayAdapter adp, adps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +74,7 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
 
     /**
      * showNames.
-     *
+     * <p>
      * connects the list of names to the Spinner.
      */
     public void showNames(){
@@ -87,6 +91,7 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
         crsr=db.query(TABLE_STUDENTS,columns, selection, selectionArgs, groupBy,having, orderBy,limit);
         int col1= crsr.getColumnIndex(Students.NAME);
         crsr.moveToFirst();
+        na.add("Names");
         while (!crsr.isAfterLast()){
             String names=crsr.getString(col1);
 
@@ -100,6 +105,14 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
         n.setAdapter(adp);
     }
 
+    /**
+     * Delete.
+     *
+     * @param view the view
+     *
+     *  Deletes the user from ListView and upgrades the students row in
+     *             STUDENTS table to none_active(0).
+     */
     public void delete(View view) {
         ContentValues cv= new ContentValues();
         db = hlp.getWritableDatabase();
@@ -136,11 +149,22 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> par, View v, int pos, long id) {
+        if(pos==0){
+            single[0]="";
+            single[1]="";
+            single[2]="";
+            single[3]="";
+            single[4]="";
+            single[5]="";
+            single[6]="";
+            adps = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, single);
+            s.setAdapter(adps);
+        }
         op=pos;
         db = hlp.getWritableDatabase();
         String[] columns = {Students.PHONES, Students.ADDRESS, Students.PHONEH, Students.NAMEM, Students.PHONEM, Students.NAMEF, Students.PHONEF};
         String selection = Students.KEY_ID + "=?";
-        String[] selectionArgs = {Integer.toString(pos+1)};
+        String[] selectionArgs = {Integer.toString(pos)};
         String groupBy = null;
         String having = null;
         String orderBy = null;
@@ -163,26 +187,13 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
             String namef = crsr.getString(col6);
             String phonef = crsr.getString(col7);
 
-            single[0] = phones;
-            single[1] = add;
-            single[2] = phoneh;
-            if ((namem==null)&&(phonem==null)) {
-                single[3] = " ";
-                single[4]=" ";
-            }
-            else {
-                single[3] = namem;
-                single[4] = phonem;
-            }
-            if ((namef == null) && (phonef == null)) {
-                single[5]=" ";
-                single[6]=" ";
-            }
-            else {
-                single[5] = namef;
-                single[6] = phonef;
-            }
-
+            single[0] = "Student's phone="+phones;
+            single[1] = "Address="+add;
+            single[2] = "Phone at home="+phoneh;
+            single[3] = "Mother's name="+namem;
+            single[4] = "Mother's phone="+phonem;
+            single[5] = "Father's name="+namef;
+            single[6] = "Father's phone="+phonef;
             crsr.moveToNext();
         }
         crsr.close();
@@ -195,45 +206,41 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
+
     /**
      * Fin.
      *
-     * @param item
-     * Moves the user to Main Activity(filling personal information) activity.
+     * @param item Moves the user to Main Activity(filling personal information) activity.
      */
     public void fin(MenuItem item) {
         Intent c= new Intent(this,MainActivity.class);
         startActivity(c);
     }
+
     /**
      * Fing.
      *
-     * @param item
-     *
-     * Moves user to filling grades activity.
+     * @param item Moves user to filling grades activity.
      */
     public void fing(MenuItem item) {
         Intent c= new Intent(this,Filling_Grades.class);
         startActivity(c);
     }
+
     /**
      * Pn.
      *
-     * @param item
-     *
-     * Moves user to Personal_info activity.
+     * @param item Moves user to Personal_info activity.
      */
     public void org(MenuItem item) {
         Intent c= new Intent(this,Organize.class);
         startActivity(c);
     }
+
     /**
      * Qg.
      *
-     * @param item
-     *
-     * The item Sends a Toast to let the user know he is in the current page
-     * he chose from the OptionMenu.
+     * @param item The item Sends a Toast to let the user know he is in the current page he chose from the OptionMenu.
      */
     public void sad(MenuItem item) {
         Toast.makeText(this, "You are already here :)", Toast.LENGTH_SHORT).show();
@@ -242,9 +249,7 @@ public class ShowAndDelete extends AppCompatActivity implements AdapterView.OnIt
     /**
      * Cred.
      *
-     * @param item
-     *
-     * Moves the user the Credits activity.
+     * @param item Moves the user the Credits activity.
      */
     public void cred(MenuItem item) {
         Intent c= new Intent(this,Credits.class);
